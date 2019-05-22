@@ -49,3 +49,5 @@ function printList(inputParentEl, outputChildEl, inputTextContent) { // creates 
   newChildEl.textContent = inputTextContent; // adds text to the child element
   getParentEl.appendChild(newChildEl); // appends the child element to the parent
  }
+
+ // Need to complete// 
