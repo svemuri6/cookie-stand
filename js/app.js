@@ -67,22 +67,39 @@ function CookieStore( mincust, maxcust, avercust){
   this.totalCookiesForTheDay = 0;
 
   this.getRandomCustomerNumber = function(){
-    this.customerEachHour.push(randomNumber(mincust, maxcust));
+    for(var i = 0; i < storeHours.length; i++){
+      this.customerEachHour.push(randomNumber(mincust, maxcust));
+    }
   }
   
   this.getCookiesPerHour = function(){
-    var numberCustomers = this.customerEachHour[0];
-    var cookies = this.customerEachHour[0] * avercust;
+    for(var i = 0; i < storeHours.length; i++){
+ 
+      var cookies = this.customerEachHour[i] * avercust;
 
-    cookies = Math.floor(cookies);
-    this.cookiesEachHour.push(cookies);
+      cookies = Math.floor(cookies);
+      
+      this.cookiesEachHour.push(cookies);
+    }
   }
+
+  this.getCookiesPerDay = function(){
+    for(var i = 0; i < this.cookiesEachHour.length; i++){
+
+      this.totalCookiesForTheDay += this.cookiesEachHour[i];
+
+      console.log('Total Cookie Sales:', this.totalCookiesForTheDay);
+    }
+  }
+
+
 }
 
 var pikePlace = new CookieStore(23, 65, 6.3);
 
 pikePlace.getRandomCustomerNumber();
 pikePlace.getCookiesPerHour();
+pikePlace.getCookiesPerDay();
 
 console.log('Pike Place:', pikePlace);
 
